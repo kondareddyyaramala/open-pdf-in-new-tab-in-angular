@@ -1,19 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pdf-preview-container',
   templateUrl: './pdf-preview-container.component.html',
   styleUrls: ['./pdf-preview-container.component.scss']
 })
-export class PdfPreviewContainerComponent implements OnInit{
-  private pdfBlob$: Observable<Blob>;
+export class PdfPreviewContainerComponent {
+  private _url: SafeResourceUrl; 
 
-  constructor(private appService: AppService) { }
+  constructor(
+    private _sanitizer: DomSanitizer) { }
 
-  ngOnInit(){
-    this.pdfBlob$ = this.appService.getPdfFile();
+
+  @Input() 
+  set blob(v: Blob){
+    this._url = this._sanitizer.bypassSecurityTrustResourceUrl( 
+      !!v ? URL.createObjectURL(v) : ''
+    );
+  }
+
+  get url(){
+    return this._url;
   }
 
 }
