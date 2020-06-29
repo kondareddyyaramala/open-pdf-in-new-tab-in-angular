@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PdfPreviewContainerComponent } from './pdf-preview-container/pdf-preview-container.component';
+import { PdfResolver } from './pdf.resolver';
+
 
 const routes: Routes = [
   {
     path: 'pdf-preview',
-    component: PdfPreviewContainerComponent
+    component: PdfPreviewContainerComponent,
+    resolve: {
+      pdfUrl: PdfResolver
+    }
   }
 ];
 

@@ -1,12 +1,15 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <nav>
-  <a [routerLink]="['/pdf-preview']" target="_blank">
-    Load PDF file  |  
- </a>
-
- <a [routerLink]="['/']">
-  Go to Home
-</a>
+  <a [routerLink]="['/pdf-preview']" [state]="{ 'url': '/api/customer'}">
+    Customer PDF file
+  </a>
+  <hr>
+  <a [routerLink]="['/pdf-preview']" [state]="{ 'url': '/api/person/1/pdf'}">
+    Person PDF file
+  </a>
+  <hr>
+  <a [routerLink]="['/']">
+    Go to Home
+  </a>
 
 </nav>
 

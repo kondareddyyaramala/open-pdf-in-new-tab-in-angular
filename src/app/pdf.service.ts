@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+export class PdfService {
 
   constructor(private http: HttpClient) { }
 
-  getPdfFile(): Observable<Blob> {
-    return this.http.get('../../assets/dummy.pdf', {
+  getPdfFile(endpoint): Observable<Blob> {
+    return this.http.get(endpoint, {
       responseType: 'blob'
     })
   }
